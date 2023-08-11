@@ -20,6 +20,7 @@ export const FormBackground = styled.div`
 
 export const FormLayout = styled.div`
   width: 90%;
+  max-width: 730px;
   height: 70%;
   border-radius: 30px;
   backdrop-filter: brightness(88%);
@@ -85,6 +86,7 @@ export const Button = styled.button`
   transition: 0.3s ease-in-out;
   text-transform: uppercase;
   letter-spacing: 1.1;
+  margin-bottom: 20px;
 
   &:hover {
     background-color: #de74ab;

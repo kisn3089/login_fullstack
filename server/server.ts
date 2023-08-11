@@ -14,7 +14,7 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
   if (req.body?.id === "kisn3089") res.send("Success Login!");
-  else res.send("No User!");
+  else res.status(400).send("No User!");
 });
 
 app.listen(port, () => {

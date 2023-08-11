@@ -27,12 +27,7 @@ const LoginForm = () => {
     onError: (data) => console.log("error: ", data),
   });
 
-  const passClick = () => {
-    // getUser({ id: userInfo.id, pw: userInfo.pw }).then((res) => {
-    //   console.log("Success: ", res);
-    // });
-    loginMutataion({ id: userInfo.id, pw: userInfo.pw });
-  };
+  const passClick = () => loginMutataion({ id: userInfo.id, pw: userInfo.pw });
 
   const passByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") loginMutataion({ id: userInfo.id, pw: userInfo.pw });
@@ -53,6 +48,7 @@ const LoginForm = () => {
               onChange={userInfoChange}
               autoComplete="off"
               onKeyDown={passByEnter}
+              data-dark={userInfo.id}
             />
             <Input
               type="password"
