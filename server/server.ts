@@ -3,6 +3,22 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const port = 8080;
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "./db/db.env") });
+const mysql = require("./db/config.ts");
+
+mysql.getConnection((error, connection) => {
+  const sql = "SELECT * FROM User";
+  connection.query(sql, (err, con) => {
+    if (err) console.log("query err: ", err);
+    console.log("query result: ", con);
+  });
+  if (error) {
+    console.error("Error getting connection:", error);
+  } else {
+    console.log("Connected to MySQL database!");
+  }
+});
 
 app.use(cors());
 app.use(bodyParser.json());
