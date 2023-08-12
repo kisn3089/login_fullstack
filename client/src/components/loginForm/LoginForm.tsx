@@ -13,7 +13,7 @@ import { getUser } from "@/lib/api/getUser";
 import { useMutation } from "@tanstack/react-query";
 
 const LoginForm = () => {
-  const [userInfo, setUserInfo] = useState({ id: "", pw: "" });
+  const [userInfo, setUserInfo] = useState({ email: "", pw: "" });
 
   const userInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -27,10 +27,12 @@ const LoginForm = () => {
     onError: (data) => console.log("error: ", data),
   });
 
-  const passClick = () => loginMutataion({ id: userInfo.id, pw: userInfo.pw });
+  const passClick = () =>
+    loginMutataion({ email: userInfo.email, pw: userInfo.pw });
 
   const passByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") loginMutataion({ id: userInfo.id, pw: userInfo.pw });
+    if (e.key === "Enter")
+      loginMutataion({ email: userInfo.email, pw: userInfo.pw });
   };
 
   return (
@@ -43,12 +45,11 @@ const LoginForm = () => {
           <InfoContainer>
             <Input
               type="text"
-              value={userInfo.id}
-              id="id"
+              value={userInfo.email}
+              id="email"
               onChange={userInfoChange}
               autoComplete="off"
               onKeyDown={passByEnter}
-              data-dark={userInfo.id}
             />
             <Input
               type="password"

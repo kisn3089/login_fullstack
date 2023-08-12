@@ -5,20 +5,7 @@ const app = express();
 const port = 8080;
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "./db/db.env") });
-const mysql = require("./db/config.ts");
-
-mysql.getConnection((error, connection) => {
-  const sql = "SELECT * FROM User";
-  connection.query(sql, (err, con) => {
-    if (err) console.log("query err: ", err);
-    console.log("query result: ", con);
-  });
-  if (error) {
-    console.error("Error getting connection:", error);
-  } else {
-    console.log("Connected to MySQL database!");
-  }
-});
+const services = require("./services/auth.ts");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -28,9 +15,12 @@ app.get("/login", (req, res) => {
   res.send("hello");
 });
 
-app.post("/login", (req, res) => {
-  if (req.body?.id === "kisn3089") res.send("Success Login!");
-  else res.status(400).send("No User!");
+app.post("/login", async (req, res) => {
+  // Email 중복 검사
+  // 커넥션 닫지 않고 바로 생성 쿼리 실행하는 방법 찾기
+  const { email, pw } = await req.body;
+  const { status, message } = await services.checkEmail(email);
+  res.status(status).send(message);
 });
 
 app.listen(port, () => {
