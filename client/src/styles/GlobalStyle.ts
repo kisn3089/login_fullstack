@@ -25,4 +25,13 @@ export const GlobalStyle = createGlobalStyle`
   );
         color: #fff;
     }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+        transition: background-color 5000s;
+        -webkit-text-fill-color: #fff !important;
+        caret-color: white;
+    }
 `;

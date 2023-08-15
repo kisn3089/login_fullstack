@@ -5,11 +5,16 @@ import {
 } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import JoinForm from "./components/molcules/join/JoinForm";
 
 const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/join",
+    element: <JoinForm />,
   },
   {
     path: "/*",

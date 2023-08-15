@@ -54,24 +54,6 @@ export const InfoContainer = styled.div`
   gap: 20%;
 `;
 
-export const Input = styled.input`
-  width: 80%;
-  height: 60px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  border: 1px solid #de74ab;
-  border-radius: 10px;
-  background-color: transparent;
-  outline: none;
-  padding: 0 10px;
-  letter-spacing: 1.1px;
-  transition: 0.3s ease-in-out;
-  &:focus {
-    transform: translateY(-10%);
-  }
-`;
-
 export const Button = styled.button`
   width: 200px;
   height: 50px;
@@ -85,11 +67,12 @@ export const Button = styled.button`
   cursor: pointer;
   transition: 0.3s ease-in-out;
   text-transform: uppercase;
-  letter-spacing: 1.1;
+  letter-spacing: 1.1px;
   margin-bottom: 20px;
+  box-shadow: 0px 0px 10px 5px #3a3a3a;
 
   &:hover {
     background-color: #de74ab;
-    transform: translateY(-20%);
+    transform: translateY(-10%);
   }
 `;
