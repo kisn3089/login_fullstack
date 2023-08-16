@@ -4,6 +4,7 @@ export const LabelInputContainer = styled.div`
   position: relative;
   width: 80%;
   height: 60px;
+  margin-bottom: 60px;
 `;
 
 export const Input = styled.input`
@@ -33,4 +34,13 @@ export const Label = styled.label<{ selected: boolean }>`
   color: ${({ selected }) => (selected ? "#4a82ea" : "#ccc")};
   pointer-events: none;
   transition: 0.3s ease-in-out;
+`;
+
+export const ValidComment = styled.div`
+  display: flex;
+  justify-content: end;
+  color: #56b8cf;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
 `;

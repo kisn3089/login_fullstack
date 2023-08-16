@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Button,
+  CenterBtn,
   FormBackground,
   FormContainer,
   FormLayout,
@@ -14,17 +15,28 @@ import { FormType } from "./type";
 const Form = ({
   type,
   emailValue,
-  pwValue,
+  passwordValue,
   inputFocus,
+  nameValue,
+  passwordConfirmValue,
   focusHandler,
   blurHandler,
   valueChange,
   submitHandler,
   enterSubmit,
 }: FormType) => {
+  const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+  const disabledValid =
+    emailValue.length === 0 ||
+    !emailValue.includes("@") ||
+    !emailValue.match(emailValidation);
+
+  const isDisabledFc = disabledValid ? () => {} : enterSubmit;
+
   return (
     <FormContainer>
-      <FormBackground isJoin={type === "join"}>
+      <FormBackground $isJoin={type === "join"}>
         <FormLayout>
           <TitleContainer>
             <Text>{type === "login" ? "LOGIN" : "JOIN"}</Text>
@@ -35,12 +47,12 @@ const Form = ({
                 title="Name"
                 id="name"
                 inputType="text"
-                inputValue={pwValue}
+                inputValue={nameValue || ""}
                 inputFocus={inputFocus}
                 focusHandler={focusHandler}
                 blurHandler={blurHandler}
                 inputChange={valueChange}
-                enterSubmit={enterSubmit}
+                enterSubmit={isDisabledFc}
               />
             )}
             <LabelInput
@@ -52,35 +64,38 @@ const Form = ({
               focusHandler={focusHandler}
               blurHandler={blurHandler}
               inputChange={valueChange}
-              enterSubmit={enterSubmit}
+              enterSubmit={isDisabledFc}
             />
             <LabelInput
               title="Password"
-              id="pw"
+              id="password"
               inputType="password"
-              inputValue={pwValue}
+              inputValue={passwordValue}
               inputFocus={inputFocus}
               focusHandler={focusHandler}
               blurHandler={blurHandler}
               inputChange={valueChange}
-              enterSubmit={enterSubmit}
+              enterSubmit={isDisabledFc}
             />
             {type === "join" && (
               <LabelInput
                 title="Confirm Password"
-                id="confirm"
-                inputType="text"
-                inputValue={pwValue}
+                id="confirmPassword"
+                inputType="password"
+                inputValue={passwordConfirmValue || ""}
                 inputFocus={inputFocus}
                 focusHandler={focusHandler}
                 blurHandler={blurHandler}
                 inputChange={valueChange}
-                enterSubmit={enterSubmit}
+                enterSubmit={isDisabledFc}
               />
             )}
-
-            <Button onClick={submitHandler}>Join</Button>
           </InfoContainer>
+          <CenterBtn>
+            <Button onClick={submitHandler} disabled={disabledValid}>
+              {disabledValid ? "" : "join"}
+            </Button>
+          </CenterBtn>
         </FormLayout>
       </FormBackground>
     </FormContainer>

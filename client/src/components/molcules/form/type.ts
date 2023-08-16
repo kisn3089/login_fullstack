@@ -7,7 +7,9 @@ export interface FormType
   > {
   type: "login" | "join";
   emailValue: string;
-  pwValue: string;
+  passwordValue: string;
+  nameValue?: string;
+  passwordConfirmValue?: string;
   valueChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   submitHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }

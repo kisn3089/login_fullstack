@@ -1,19 +1,23 @@
 import React from "react";
 import Form from "../form/Form";
 import useForm from "@/hooks/useForm";
+import useJoin from "@/hooks/useJoin";
 
 const JoinForm = () => {
   const { inputFocus, focusHandler, blurHandler } = useForm();
+  const { createUser, createInfoChange } = useJoin();
 
   return (
     <Form
       type="join"
-      emailValue=""
-      pwValue=""
+      nameValue={createUser.name}
+      emailValue={createUser.email}
+      passwordValue={createUser.password}
+      passwordConfirmValue={createUser.confirmPassword}
       inputFocus={inputFocus}
       focusHandler={focusHandler}
       blurHandler={blurHandler}
-      valueChange={() => {}}
+      valueChange={createInfoChange}
       submitHandler={() => {}}
       enterSubmit={() => {}}
     />

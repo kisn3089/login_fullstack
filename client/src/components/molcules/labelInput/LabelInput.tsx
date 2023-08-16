@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Label, LabelInputContainer } from "./styles";
+import { Input, Label, LabelInputContainer, ValidComment } from "./styles";
 import { LabelInputType } from "./type";
 
 const LabelInput = ({
@@ -13,6 +13,13 @@ const LabelInput = ({
   inputChange,
   enterSubmit,
 }: LabelInputType) => {
+  const validComment: { [index: string]: string } = {
+    Name: "",
+    Email: "Email 형식으로 입력해주세요.",
+    Password: "8자리 이상 입력해주세요.",
+    PasswordConfirm: "",
+  };
+
   return (
     <LabelInputContainer>
       <Label
@@ -29,6 +36,7 @@ const LabelInput = ({
         onChange={inputChange}
         onKeyDown={enterSubmit}
       />
+      <ValidComment>{validComment[title]}</ValidComment>
     </LabelInputContainer>
   );
 };

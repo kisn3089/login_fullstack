@@ -1,10 +1,10 @@
 import { getUser } from "@/lib/api/getUser";
-import { loginType } from "@/types/login.type";
+import { LoginType } from "@/types/login.type";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 
 const useLogin = () => {
-  const [userInfo, setUserInfo] = useState<loginType>({
+  const [userInfo, setUserInfo] = useState<LoginType>({
     email: "",
     password: "",
   });
@@ -22,11 +22,11 @@ const useLogin = () => {
   });
 
   const passClick = () =>
-    loginMutataion({ email: userInfo.email, pw: userInfo.password });
+    loginMutataion({ email: userInfo.email, password: userInfo.password });
 
   const passByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter")
-      loginMutataion({ email: userInfo.email, pw: userInfo.password });
+      loginMutataion({ email: userInfo.email, password: userInfo.password });
   };
   return { userInfo, userInfoChange, passClick, passByEnter };
 };

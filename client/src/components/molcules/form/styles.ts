@@ -8,10 +8,10 @@ export const FormContainer = styled.div`
   align-items: center;
 `;
 
-export const FormBackground = styled.div<{ isJoin: boolean }>`
+export const FormBackground = styled.div<{ $isJoin: boolean }>`
   width: 70%;
   max-width: 1500px;
-  height: ${({ isJoin }) => (isJoin ? "90%" : "50%")};
+  height: ${({ $isJoin: isJoin }) => (isJoin ? "70%" : "50%")};
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -50,8 +50,13 @@ export const InfoContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 80%;
-  gap: 11%;
+  height: 60%;
+`;
+
+export const CenterBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Button = styled.button`
@@ -65,7 +70,7 @@ export const Button = styled.button`
   font-weight: 500;
   color: #fff;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   text-transform: uppercase;
   letter-spacing: 1.1px;
   margin-bottom: 20px;
@@ -74,5 +79,14 @@ export const Button = styled.button`
   &:hover {
     background-color: #de74ab;
     transform: translateY(-10%);
+  }
+
+  &:disabled {
+    height: 8px;
+    width: 120px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 3px #fff;
+    cursor: default;
+    font-size: 0;
   }
 `;

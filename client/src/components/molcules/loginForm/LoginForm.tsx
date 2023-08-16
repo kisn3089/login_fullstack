@@ -11,7 +11,7 @@ const LoginForm = () => {
     <Form
       type="login"
       emailValue={userInfo.email}
-      pwValue={userInfo.password}
+      passwordValue={userInfo.password}
       inputFocus={inputFocus}
       focusHandler={focusHandler}
       blurHandler={blurHandler}
