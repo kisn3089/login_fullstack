@@ -8,10 +8,10 @@ export const FormContainer = styled.div`
   align-items: center;
 `;
 
-export const FormBackground = styled.div`
+export const FormBackground = styled.div<{ isJoin: boolean }>`
   width: 70%;
   max-width: 1500px;
-  height: 50%;
+  height: ${({ isJoin }) => (isJoin ? "90%" : "50%")};
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -28,7 +28,7 @@ export const FormLayout = styled.div`
 
 export const TitleContainer = styled.div`
   width: 100%;
-  height: 30%;
+  height: 20%;
 `;
 
 export const Text = styled.span`
@@ -50,8 +50,8 @@ export const InfoContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 70%;
-  gap: 20%;
+  height: 80%;
+  gap: 11%;
 `;
 
 export const Button = styled.button`

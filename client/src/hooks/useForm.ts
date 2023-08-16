@@ -8,7 +8,7 @@ const useForm = () => {
     setInputFocus(id);
   };
 
-  const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+  const blurHandler = () => {
     setInputFocus("");
   };
 

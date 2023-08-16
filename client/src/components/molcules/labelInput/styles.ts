@@ -23,9 +23,10 @@ export const Input = styled.input`
 `;
 export const Label = styled.label<{ selected: boolean }>`
   position: absolute;
+  width: 200px;
   top: 50%;
   transform: ${({ selected }) =>
-    selected ? "translate3d(-20%, -240%, 0)" : "translateY(-50%)"};
+    selected ? "translate3d(-10%, -240%, 0)" : "translateY(-50%)"};
   padding: 0 20px;
   font-size: 20px;
   font-weight: 500;
