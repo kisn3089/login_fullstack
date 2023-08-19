@@ -35,8 +35,9 @@ const LabelInput = ({
         onBlur={blurHandler}
         onChange={inputChange}
         onKeyDown={enterSubmit}
+        autoComplete="off"
       />
-      <ValidComment>{validComment[title]}</ValidComment>
+      {inputFocus === id && <ValidComment>{validComment[title]}</ValidComment>}
     </LabelInputContainer>
   );
 };

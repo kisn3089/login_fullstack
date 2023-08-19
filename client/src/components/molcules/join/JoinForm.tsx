@@ -5,7 +5,8 @@ import useJoin from "@/hooks/useJoin";
 
 const JoinForm = () => {
   const { inputFocus, focusHandler, blurHandler } = useForm();
-  const { createUser, createInfoChange } = useJoin();
+  const { createUser, createInfoChange, joinClick, joinClickByEnter } =
+    useJoin();
 
   return (
     <Form
@@ -18,8 +19,8 @@ const JoinForm = () => {
       focusHandler={focusHandler}
       blurHandler={blurHandler}
       valueChange={createInfoChange}
-      submitHandler={() => {}}
-      enterSubmit={() => {}}
+      submitHandler={joinClick}
+      enterSubmit={joinClickByEnter}
     />
   );
 };

@@ -1,4 +1,4 @@
-import { getUser } from "@/lib/api/getUser";
+import { loginAPI } from "@/lib/api/getUserAPI";
 import { LoginType } from "@/types/login.type";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -16,7 +16,7 @@ const useLogin = () => {
     });
   };
 
-  const { mutate: loginMutataion } = useMutation(getUser, {
+  const { mutate: loginMutataion } = useMutation(loginAPI, {
     onSuccess: (data) => console.log("success: ", data),
     onError: (data) => console.log("error: ", data),
   });
@@ -25,8 +25,7 @@ const useLogin = () => {
     loginMutataion({ email: userInfo.email, password: userInfo.password });
 
   const passByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter")
-      loginMutataion({ email: userInfo.email, password: userInfo.password });
+    if (e.key === "Enter") passClick();
   };
   return { userInfo, userInfoChange, passClick, passByEnter };
 };

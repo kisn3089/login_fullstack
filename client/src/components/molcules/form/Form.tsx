@@ -28,9 +28,13 @@ const Form = ({
   const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
   const disabledValid =
-    emailValue.length === 0 ||
-    !emailValue.includes("@") ||
-    !emailValue.match(emailValidation);
+    type === "login"
+      ? !(emailValue.match(emailValidation) && passwordValue.length > 7)
+      : !(
+          emailValue.match(emailValidation) &&
+          passwordValue.length > 7 &&
+          nameValue?.trim() !== ""
+        );
 
   const isDisabledFc = disabledValid ? () => {} : enterSubmit;
 

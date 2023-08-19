@@ -1,4 +1,15 @@
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
+
+const fadeUp = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  } 
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const LabelInputContainer = styled.div`
   position: relative;
@@ -43,4 +54,5 @@ export const ValidComment = styled.div`
   font-size: 18px;
   font-weight: 500;
   margin-top: 10px;
+  animation: ${fadeUp} 0.3s ease-in-out;
 `;
