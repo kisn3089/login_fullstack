@@ -6,8 +6,9 @@ import {
   FormContainer,
   FormLayout,
   InfoContainer,
-  Text,
+  TitleText,
   TitleContainer,
+  ValidateContainer,
 } from "./styles";
 import LabelInput from "../labelInput/LabelInput";
 import { FormType } from "./type";
@@ -38,27 +39,68 @@ const Form = ({
 
   const isDisabledFc = disabledValid ? () => {} : enterSubmit;
 
-  return (
-    <FormContainer>
-      <FormBackground $isJoin={type === "join"}>
-        <FormLayout>
-          <TitleContainer>
-            <Text>{type === "login" ? "LOGIN" : "JOIN"}</Text>
-          </TitleContainer>
-          <InfoContainer>
-            {type === "join" && (
+  if (type === "login")
+    return (
+      <FormContainer>
+        <FormBackground $isJoin={false}>
+          <FormLayout>
+            <TitleContainer>
+              <TitleText>LOGIN</TitleText>
+            </TitleContainer>
+            <InfoContainer $isJoin={false}>
               <LabelInput
-                title="Name"
-                id="name"
+                title="Email"
+                id="email"
                 inputType="text"
-                inputValue={nameValue || ""}
+                inputValue={emailValue}
                 inputFocus={inputFocus}
                 focusHandler={focusHandler}
                 blurHandler={blurHandler}
                 inputChange={valueChange}
                 enterSubmit={isDisabledFc}
               />
-            )}
+              <LabelInput
+                title="Password"
+                id="password"
+                inputType="password"
+                inputValue={passwordValue}
+                inputFocus={inputFocus}
+                focusHandler={focusHandler}
+                blurHandler={blurHandler}
+                inputChange={valueChange}
+                enterSubmit={isDisabledFc}
+              />
+            </InfoContainer>
+            <CenterBtn>
+              <Button onClick={submitHandler} disabled={disabledValid}>
+                {disabledValid ? "" : "pass"}
+              </Button>
+            </CenterBtn>
+          </FormLayout>
+          <ValidateContainer></ValidateContainer>
+        </FormBackground>
+      </FormContainer>
+    );
+
+  return (
+    <FormContainer>
+      <FormBackground $isJoin={true}>
+        <FormLayout>
+          <TitleContainer>
+            <TitleText>JOIN</TitleText>
+          </TitleContainer>
+          <InfoContainer $isJoin={true}>
+            <LabelInput
+              title="Name"
+              id="name"
+              inputType="text"
+              inputValue={nameValue || ""}
+              inputFocus={inputFocus}
+              focusHandler={focusHandler}
+              blurHandler={blurHandler}
+              inputChange={valueChange}
+              enterSubmit={isDisabledFc}
+            />
             <LabelInput
               title="Email"
               id="email"
@@ -81,19 +123,17 @@ const Form = ({
               inputChange={valueChange}
               enterSubmit={isDisabledFc}
             />
-            {type === "join" && (
-              <LabelInput
-                title="Confirm Password"
-                id="confirmPassword"
-                inputType="password"
-                inputValue={passwordConfirmValue || ""}
-                inputFocus={inputFocus}
-                focusHandler={focusHandler}
-                blurHandler={blurHandler}
-                inputChange={valueChange}
-                enterSubmit={isDisabledFc}
-              />
-            )}
+            <LabelInput
+              title="Confirm Password"
+              id="confirmPassword"
+              inputType="password"
+              inputValue={passwordConfirmValue || ""}
+              inputFocus={inputFocus}
+              focusHandler={focusHandler}
+              blurHandler={blurHandler}
+              inputChange={valueChange}
+              enterSubmit={isDisabledFc}
+            />
           </InfoContainer>
           <CenterBtn>
             <Button onClick={submitHandler} disabled={disabledValid}>
