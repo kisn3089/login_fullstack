@@ -22,9 +22,6 @@ app.get("/join", (req, res) => {
 app.post("/login", async (req, res) => {
   // Email 중복 검사
   // 커넥션 닫지 않고 바로 생성 쿼리 실행하는 방법 찾기
-  const { email, password } = await req.body;
-  const { status, message } = await services.checkEmail(email);
-  res.status(status).send(message);
 });
 
 app.post("/join", async (req, res) => {

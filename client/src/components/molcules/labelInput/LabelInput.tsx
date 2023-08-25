@@ -14,10 +14,10 @@ const LabelInput = ({
   enterSubmit,
 }: LabelInputType) => {
   const validComment: { [index: string]: string } = {
-    Name: "",
-    Email: "Email 형식으로 입력해주세요.",
-    Password: "8자리 이상 입력해주세요.",
-    PasswordConfirm: "",
+    name: "",
+    email: "Email 형식으로 입력해주세요.",
+    password: "8자리 이상 입력해주세요.",
+    confirmPassword: "비밀번호를 한번 더 입력해주세요.",
   };
 
   return (
@@ -37,7 +37,7 @@ const LabelInput = ({
         onKeyDown={enterSubmit}
         autoComplete="off"
       />
-      {inputFocus === id && <ValidComment>{validComment[title]}</ValidComment>}
+      {inputFocus === id && <ValidComment>{validComment[id]}</ValidComment>}
     </LabelInputContainer>
   );
 };

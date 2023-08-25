@@ -9,7 +9,7 @@ module.exports = {
 
       if (result.length === 0)
         return { status: 200, message: "사용가능한 이메일입니다." };
-      else return { status: 400, message: "중복된 계정입니다." };
+      else return { status: 400, message: "이미 존재하는 이메일입니다." };
     } catch (err) {
       return err;
     }

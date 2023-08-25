@@ -1,37 +1,47 @@
+import { fadeDown } from "@/styles/animation";
 import { styled } from "styled-components";
 
 export const FormContainer = styled.div`
   width: 100vw;
   height: 100vh;
+  min-width: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const FormBackground = styled.div`
+export const FormBackground = styled.div<{ $isJoin: boolean }>`
+  position: relative;
   width: 70%;
   max-width: 1500px;
-  height: 50%;
+  height: ${({ $isJoin: isJoin }) => (isJoin ? "70%" : "50%")};
   border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 5%;
 `;
 
 export const FormLayout = styled.div`
   width: 90%;
   max-width: 730px;
-  height: 70%;
+  height: 90%;
+  max-height: 850px;
   border-radius: 30px;
   backdrop-filter: brightness(88%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export const TitleContainer = styled.div`
   width: 100%;
-  height: 30%;
+  height: 20%;
 `;
 
-export const Text = styled.span`
+export const TitleText = styled.span`
   width: 100%;
   height: 100%;
   font-size: 48px;
@@ -44,37 +54,25 @@ export const Text = styled.span`
   color: #4a82ea;
 `;
 
-export const InfoContainer = styled.div`
+export const InfoContainer = styled.div<{ $isJoin: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 70%;
-  gap: 20%;
+  height: ${({ $isJoin: isJoin }) => (isJoin ? "60%" : "50%")};
 `;
 
-export const Input = styled.input`
-  width: 80%;
-  height: 60px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  border: 1px solid #de74ab;
-  border-radius: 10px;
-  background-color: transparent;
-  outline: none;
-  padding: 0 10px;
-  letter-spacing: 1.1px;
-  transition: 0.3s ease-in-out;
-  &:focus {
-    transform: translateY(-10%);
-  }
+export const CenterBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
 `;
 
 export const Button = styled.button`
   width: 200px;
-  height: 50px;
+  height: 100%;
   background-color: #4a82ea;
   border-radius: 10px;
   border: none;
@@ -83,7 +81,7 @@ export const Button = styled.button`
   font-weight: 500;
   color: #fff;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   text-transform: uppercase;
   letter-spacing: 1.1px;
   margin-bottom: 20px;
@@ -92,5 +90,33 @@ export const Button = styled.button`
   &:hover {
     background-color: #de74ab;
     transform: translateY(-10%);
+  }
+
+  &:disabled {
+    height: 8px;
+    width: 120px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 3px #fff;
+    cursor: default;
+    font-size: 0;
+  }
+`;
+
+export const ValidateContainer = styled.div`
+  position: absolute;
+  top: 100%;
+  width: 90%;
+  max-width: 730px;
+  height: 65px;
+  border-radius: 30px;
+  backdrop-filter: brightness(88%);
+  animation: ${fadeDown} 0.4s ease-in-out;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  svg {
+    width: 30px;
+    stroke: ${({ theme }) => theme.colorSpace.red};
   }
 `;

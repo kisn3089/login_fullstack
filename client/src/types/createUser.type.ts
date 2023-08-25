@@ -1,6 +1,6 @@
-export type CreateUserType = {
+import { LoginType } from "./login.type";
+
+export interface CreateUserType extends LoginType {
   name: string;
-  email: string;
-  password: string;
   confirmPassword: string;
-};
+}
