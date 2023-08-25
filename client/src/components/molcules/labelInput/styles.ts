@@ -1,15 +1,5 @@
-import { keyframes, styled } from "styled-components";
-
-const fadeUp = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(-10%);
-  } 
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { fadeUp } from "@/styles/animation";
+import { styled } from "styled-components";
 
 export const LabelInputContainer = styled.div`
   position: relative;
@@ -47,10 +37,11 @@ export const Label = styled.label<{ selected: boolean }>`
   transition: 0.3s ease-in-out;
 `;
 
-export const ValidComment = styled.div`
+export const ValidComment = styled.div<{ $isConfirmPassword: boolean }>`
   display: flex;
   justify-content: end;
-  color: #56b8cf;
+  color: ${({ $isConfirmPassword, theme }) =>
+    $isConfirmPassword ? theme.colorSpace.red : "#56b8cf"};
   font-size: 18px;
   font-weight: 500;
   margin-top: 10px;

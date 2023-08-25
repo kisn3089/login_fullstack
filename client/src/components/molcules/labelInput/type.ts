@@ -4,6 +4,7 @@ export interface LabelInputType {
   inputValue: string;
   inputType: "text" | "password";
   inputFocus: string;
+  isSamepassword?: boolean;
   focusHandler: (e: React.FocusEvent<HTMLInputElement>) => void;
   blurHandler: (e: React.FocusEvent<HTMLInputElement>) => void;
   inputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

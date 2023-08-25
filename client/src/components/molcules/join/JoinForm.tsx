@@ -28,6 +28,7 @@ const JoinForm = () => {
   const disabledValid = !(
     createUser.email.match(emailValidation) &&
     createUser.password.length > 7 &&
+    createUser.password === createUser.confirmPassword &&
     createUser.name?.trim() !== ""
   );
 
@@ -100,6 +101,10 @@ const JoinForm = () => {
               inputType="password"
               inputValue={createUser.confirmPassword}
               inputFocus={inputFocus}
+              isSamepassword={
+                createUser.confirmPassword === "" ||
+                createUser.password === createUser.confirmPassword
+              }
               focusHandler={focusHandler}
               blurHandler={blurHandler}
               inputChange={createInfoChange}

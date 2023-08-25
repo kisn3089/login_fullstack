@@ -1,6 +1,4 @@
-import { createUserAPI } from "@/lib/api/createUserAPI";
 import { CreateUserType } from "@/types/createUser.type";
-import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 
 const useJoin = () => {
@@ -11,23 +9,6 @@ const useJoin = () => {
     confirmPassword: "",
   });
 
-  const { mutate: createMutation } = useMutation(createUserAPI, {
-    onSuccess: (data) => console.log("success: ", data),
-    onError: (data) => console.log("error: ", data),
-  });
-
-  const joinClick = () => {
-    createMutation({
-      name: createUser.name,
-      email: createUser.email,
-      password: createUser.password,
-    });
-  };
-
-  const joinClickByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") joinClick();
-  };
-
   const createInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.currentTarget;
     setCreateUser((prev) => {
@@ -35,7 +16,7 @@ const useJoin = () => {
     });
   };
 
-  return { createUser, createInfoChange, joinClick, joinClickByEnter };
+  return { createUser, createInfoChange };
 };
 
 export default useJoin;
