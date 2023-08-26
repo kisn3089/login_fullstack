@@ -6,8 +6,13 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import JoinForm from "./components/molcules/join/JoinForm";
 import LoginForm from "./components/molcules/loginForm/LoginForm";
+import Main from "./components/pages/main";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+  },
   {
     path: "/login",
     element: <LoginForm />,
@@ -18,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/*",
-    element: <Navigate to="/login" />,
+    element: <Navigate to="/" />,
   },
 ]);
 

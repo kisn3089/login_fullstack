@@ -34,4 +34,36 @@ module.exports = {
       return err;
     }
   },
+
+  findUser: async (email, password) => {
+    const query = `SELECT * FROM User WHERE email="${email}"`;
+
+    try {
+      const result = await pool.queryParams(query);
+
+      const salt = result[0].salt;
+      const dbPassword = result[0].password;
+      const hashPassword = cryp
+        .createHash("sha512")
+        .update(password + salt)
+        .digest("base64");
+
+      if (dbPassword === hashPassword)
+        return {
+          status: 200,
+          message: {
+            email: result[0].email,
+            username: result[0].username,
+            createAt: result[0].created_at,
+          },
+        };
+      else
+        return {
+          status: 401,
+          message: "이메일 혹은 비밀번호가 잘못되었습니다.",
+        };
+    } catch (err) {
+      return { status: 401, message: "이메일 혹은 비밀번호가 잘못되었습니다." };
+    }
+  },
 };

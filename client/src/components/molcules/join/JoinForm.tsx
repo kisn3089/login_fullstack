@@ -127,7 +127,6 @@ const JoinForm = () => {
             <Svg.Warning />
             <TextAtoms
               content={error.response?.data || ""}
-              // color={colorSpace.red}
               color="#de74ab"
               fontSize="18px"
               fontWeight="500"

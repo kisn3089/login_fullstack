@@ -29,8 +29,6 @@ const LoginForm = () => {
   const navigator = useNavigate();
   const location = useLocation();
 
-  console.log("state: ", location.state);
-
   const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   const disabledValid = !(
     userInfo.email.match(emailValidation) && userInfo.password.length > 7

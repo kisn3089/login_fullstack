@@ -20,6 +20,21 @@ const fadeAfter = keyframes`
 export const FormContainer = styled.div`
   width: 100vw;
   height: 100vh;
+  background: linear-gradient(
+    to right top,
+    #2e282b,
+    #3d2f3a,
+    #48374c,
+    #4f4160,
+    #504d77,
+    #42517b,
+    #30547d,
+    #18577d,
+    #0a4f67,
+    #124551,
+    #1c3a3d,
+    #212f2e
+  );
   min-width: 900px;
   display: flex;
   justify-content: center;
