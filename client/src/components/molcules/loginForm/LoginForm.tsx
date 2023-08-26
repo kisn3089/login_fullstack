@@ -39,7 +39,10 @@ const LoginForm = () => {
     isError,
     error,
   } = useMutation(loginAPI, {
-    onSuccess: (data) => console.log("success: ", data),
+    onSuccess: (data) => {
+      console.log("success: ", data);
+      navigator("/");
+    },
     onError: (data: AxiosError<string>) =>
       console.log("error: ", data.response?.data),
   });
