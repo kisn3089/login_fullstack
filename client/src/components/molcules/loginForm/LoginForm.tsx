@@ -8,8 +8,10 @@ import {
   FormContainer,
   FormLayout,
   InfoContainer,
+  NoticeBySuccess,
   TitleContainer,
   TitleText,
+  ToJoinContainer,
   ValidateContainer,
 } from "./styles";
 import LabelInput from "../labelInput/LabelInput";
@@ -19,10 +21,15 @@ import { colorSpace } from "@/styles/ColorSpace";
 import { useMutation } from "@tanstack/react-query";
 import { loginAPI } from "@/lib/api/getUserAPI";
 import { AxiosError } from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { userInfo, userInfoChange } = useLogin();
   const { inputFocus, focusHandler, blurHandler } = useForm();
+  const navigator = useNavigate();
+  const location = useLocation();
+
+  console.log("state: ", location.state);
 
   const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   const disabledValid = !(
@@ -31,8 +38,8 @@ const LoginForm = () => {
 
   const {
     mutate: loginMutataion,
-    isError: isLoginError,
-    error: loginError,
+    isError,
+    error,
   } = useMutation(loginAPI, {
     onSuccess: (data) => console.log("success: ", data),
     onError: (data: AxiosError<string>) =>
@@ -49,6 +56,17 @@ const LoginForm = () => {
   return (
     <FormContainer>
       <FormBackground $isJoin={false}>
+        {location.state && (
+          <NoticeBySuccess>
+            <Svg.Warning />
+            <TextAtoms
+              content="회원가입을 축하드립니다. 👾"
+              color={colorSpace.aqua}
+              fontSize="18px"
+              fontWeight="400"
+            />
+          </NoticeBySuccess>
+        )}
         <FormLayout>
           <TitleContainer>
             <TitleText>LOGIN</TitleText>
@@ -82,13 +100,16 @@ const LoginForm = () => {
               {disabledValid ? "" : "pass"}
             </Button>
           </CenterBtn>
+          <ToJoinContainer onClick={() => navigator("/join")}>
+            <TextAtoms content="가입하기" fontSize="16px" />
+          </ToJoinContainer>
         </FormLayout>
-        {isLoginError && (
+        {isError && (
           <ValidateContainer>
             <Svg.Warning />
             <TextAtoms
-              content={loginError.response?.data || ""}
-              color={colorSpace.red}
+              content={error.response?.data || ""}
+              color={colorSpace.pink}
               fontSize="18px"
               fontWeight="400"
             />

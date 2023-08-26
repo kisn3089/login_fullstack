@@ -7,4 +7,5 @@ export const TextAtom = styled.span`
   color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;

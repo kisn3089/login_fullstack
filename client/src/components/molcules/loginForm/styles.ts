@@ -1,5 +1,21 @@
 import { fadeDown } from "@/styles/animation";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
+
+const fadeAfter = keyframes`
+  0% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+`;
 
 export const FormContainer = styled.div`
   width: 100vw;
@@ -14,13 +30,32 @@ export const FormBackground = styled.div<{ $isJoin: boolean }>`
   position: relative;
   width: 70%;
   max-width: 1500px;
-  height: ${({ $isJoin: isJoin }) => (isJoin ? "70%" : "50%")};
+  height: ${({ $isJoin: isJoin }) => (isJoin ? "910px" : "45%")};
   border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 5%;
+`;
+
+export const NoticeBySuccess = styled.div`
+  position: absolute;
+  top: -15%;
+  width: 90%;
+  max-width: 730px;
+  height: 65px;
+  border-radius: 30px;
+  backdrop-filter: brightness(88%);
+  animation: ${fadeAfter} 3s ease-in-out forwards;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  svg {
+    width: 30px;
+    stroke: ${({ theme }) => theme.colorSpace.aqua};
+  }
 `;
 
 export const FormLayout = styled.div`
@@ -88,7 +123,7 @@ export const Button = styled.button`
   box-shadow: 0px 0px 10px 5px #3a3a3a;
 
   &:hover {
-    background-color: #de74ab;
+    background-color: ${({ theme }) => theme.colorSpace.pink};
     transform: translateY(-10%);
   }
 
@@ -104,7 +139,7 @@ export const Button = styled.button`
 
 export const ValidateContainer = styled.div`
   position: absolute;
-  top: 100%;
+  bottom: -5%;
   width: 90%;
   max-width: 730px;
   height: 65px;
@@ -117,6 +152,49 @@ export const ValidateContainer = styled.div`
   gap: 3%;
   svg {
     width: 30px;
-    stroke: ${({ theme }) => theme.colorSpace.red};
+    stroke: ${({ theme }) => theme.colorSpace.pink};
+  }
+`;
+
+export const ToJoinContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    transform: translateY(20%);
+    ::before {
+      transform: translateY(0);
+    }
+    span {
+      color: #222;
+    }
+  }
+
+  ::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-100%);
+    transition: 0.5s ease-in-out;
+    z-index: -1;
+  }
+
+  span {
+    text-align: center;
+    text-decoration-line: underline;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
   }
 `;

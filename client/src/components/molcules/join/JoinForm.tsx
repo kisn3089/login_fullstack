@@ -10,19 +10,21 @@ import {
   InfoContainer,
   TitleContainer,
   TitleText,
+  ToJoinContainer,
   ValidateContainer,
 } from "../loginForm/styles";
 import LabelInput from "../labelInput/LabelInput";
 import TextAtoms from "@/components/atoms/Text/TextAtoms";
-import { colorSpace } from "@/styles/ColorSpace";
 import * as Svg from "../../icons/index";
 import { useMutation } from "@tanstack/react-query";
 import { createUserAPI } from "@/lib/api/createUserAPI";
 import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 const JoinForm = () => {
   const { inputFocus, focusHandler, blurHandler } = useForm();
   const { createUser, createInfoChange } = useJoin();
+  const navigator = useNavigate();
 
   const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   const disabledValid = !(
@@ -34,10 +36,10 @@ const JoinForm = () => {
 
   const {
     mutate: createMutation,
-    isError: isJoinError,
-    error: joinError,
+    isError,
+    error,
   } = useMutation(createUserAPI, {
-    onSuccess: (data) => console.log("success: ", data),
+    onSuccess: () => navigator("/login", { replace: true, state: "success" }),
     onError: (data: AxiosError<string>) =>
       console.log("error: ", data.response?.data),
   });
@@ -116,15 +118,19 @@ const JoinForm = () => {
               {disabledValid ? "" : "join"}
             </Button>
           </CenterBtn>
+          <ToJoinContainer onClick={() => navigator("/login")}>
+            <TextAtoms content="로그인하기" fontSize="16px" />
+          </ToJoinContainer>
         </FormLayout>
-        {isJoinError && (
+        {isError && (
           <ValidateContainer>
             <Svg.Warning />
             <TextAtoms
-              content={joinError.response?.data || ""}
-              color={colorSpace.red}
+              content={error.response?.data || ""}
+              // color={colorSpace.red}
+              color="#de74ab"
               fontSize="18px"
-              fontWeight="400"
+              fontWeight="500"
             />
           </ValidateContainer>
         )}

@@ -1,3 +1,4 @@
 export const colorSpace = {
-  red: "#cd2640",
+  pink: "#de74ab",
+  aqua: "#56b8cf",
 };

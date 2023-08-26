@@ -14,7 +14,7 @@ export const Input = styled.input`
   font-size: 18px;
   font-weight: 500;
   color: #fff;
-  border: 1px solid #de74ab;
+  border: ${({ theme }) => `1px solid ${theme.colorSpace.pink}`};
   border-radius: 8px;
   background-color: transparent;
   outline: none;
@@ -41,7 +41,7 @@ export const ValidComment = styled.div<{ $isConfirmPassword: boolean }>`
   display: flex;
   justify-content: end;
   color: ${({ $isConfirmPassword, theme }) =>
-    $isConfirmPassword ? theme.colorSpace.red : "#56b8cf"};
+    $isConfirmPassword ? theme.colorSpace.pink : theme.colorSpace.aqua};
   font-size: 18px;
   font-weight: 500;
   margin-top: 10px;

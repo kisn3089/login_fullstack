@@ -12,11 +12,11 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/login", (req, res) => {
-  res.send("login hello");
+  res.status(200).end();
 });
 
 app.get("/join", (req, res) => {
-  res.send("join hello");
+  res.status(200).end();
 });
 
 app.post("/login", async (req, res) => {

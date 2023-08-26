@@ -21,7 +21,7 @@ const TextAtoms = ({
       color,
       ...customStyle,
     };
-  }, [fontSize, fontWeight, color]);
+  }, [fontSize, fontWeight, color, customStyle]);
   return <TextAtom style={style}>{content}</TextAtom>;
 };
 
