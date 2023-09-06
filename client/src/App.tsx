@@ -6,7 +6,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import JoinForm from "./components/molcules/join/JoinForm";
 import LoginForm from "./components/molcules/loginForm/LoginForm";
-import Main from "./components/pages/main";
+import Main from "./components/pages/Main";
 
 const router = createBrowserRouter([
   {

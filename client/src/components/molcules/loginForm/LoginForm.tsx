@@ -22,8 +22,11 @@ import { useMutation } from "@tanstack/react-query";
 import { loginAPI } from "@/lib/api/getUserAPI";
 import { AxiosError } from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { userRecoil } from "@/components/store/userRecoil";
 
 const LoginForm = () => {
+  const setUserState = useSetRecoilState(userRecoil);
   const { userInfo, userInfoChange } = useLogin();
   const { inputFocus, focusHandler, blurHandler } = useForm();
   const navigator = useNavigate();
@@ -40,8 +43,8 @@ const LoginForm = () => {
     error,
   } = useMutation(loginAPI, {
     onSuccess: (data) => {
-      console.log("success: ", data);
-      navigator("/");
+      setUserState(data);
+      navigator("/", { replace: true, state: data.username });
     },
     onError: (data: AxiosError<string>) =>
       console.log("error: ", data.response?.data),
