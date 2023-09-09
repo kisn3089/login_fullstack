@@ -1,5 +1,6 @@
 const pool = require("../models/query.ts");
 const cryp = require("crypto");
+const jwtToken = require("../util/jwt.ts");
 
 module.exports = {
   checkEmail: async (email) => {
@@ -39,25 +40,31 @@ module.exports = {
     const query = `SELECT * FROM User WHERE email="${email}"`;
 
     try {
-      const result = await pool.queryParams(query);
+      const [result] = await pool.queryParams(query);
 
-      const salt = result[0].salt;
-      const dbPassword = result[0].password;
+      const salt = result.salt;
+      const dbPassword = result.password;
       const hashPassword = cryp
         .createHash("sha512")
         .update(password + salt)
         .digest("base64");
 
-      if (dbPassword === hashPassword)
+      if (dbPassword === hashPassword) {
+        const token = await jwtToken.createToken({
+          email: result.email,
+          username: result.username,
+        });
+
         return {
           status: 200,
           message: {
-            email: result[0].email,
-            username: result[0].username,
-            createAt: result[0].created_at,
+            email: result.email,
+            username: result.username,
+            token: token,
+            createAt: result.created_at,
           },
         };
-      else
+      } else
         return {
           status: 401,
           message: "이메일 혹은 비밀번호가 잘못되었습니다.",

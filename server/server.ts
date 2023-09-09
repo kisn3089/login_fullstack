@@ -26,14 +26,11 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/join", async (req, res) => {
-  // Email 중복 검사
-  // 커넥션 닫지 않고 바로 생성 쿼리 실행하는 방법 찾기
   const { name, email, password } = await req.body;
   const { status: checkStatus, message: checkMessage } =
     await services.checkEmail(email);
   if (checkStatus === 400) res.status(checkStatus).send(checkMessage);
   if (checkStatus === 200) {
-    // 회원가입 진행하는 쿼리 수향
     const { status, message } = await services.createUser(
       name,
       email,

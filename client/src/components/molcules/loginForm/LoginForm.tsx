@@ -43,6 +43,8 @@ const LoginForm = () => {
     error,
   } = useMutation(loginAPI, {
     onSuccess: (data) => {
+      console.log(data);
+
       setUserState(data);
       navigator("/", { replace: true, state: data.username });
     },
